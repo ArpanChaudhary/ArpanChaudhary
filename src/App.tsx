@@ -478,7 +478,7 @@ const App: React.FC = () => {
         />
         <Container maxW="container.xl" position="relative" zIndex="1">
           <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" align="center">
-            <Text>© 2024 Arpan Chaudhary. All rights reserved.</Text>
+            <Text>© 2025 Arpan Chaudhary. All rights reserved.</Text>
             <HStack spacing={6}>
               <Link 
                 href="mailto:arpanchaudhary74882@gmail.com" 
