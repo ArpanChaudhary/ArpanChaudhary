@@ -130,49 +130,67 @@ const App: React.FC = () => {
       >
         {HERO_BG}
         <Container maxW="container.xl" position="relative" zIndex={1} pt={24} pb={16}>
-          <MotionFlex 
-            direction="column" 
-            align="center" 
-            justify="center" 
-            textAlign="center"
+          <MotionFlex
+            direction={{ base: 'column', md: 'row' }}
+            align="center"
+            justify="space-between"
+            textAlign={{ base: 'center', md: 'left' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             pt={32}
+            gap={12}
           >
-            <Heading as="h1" size="3xl" fontWeight="extrabold" style={gradientText}>
-              Arpan Chaudhary
-            </Heading>
-            <Text fontSize="2xl" color="blue.600" mt={4} fontWeight="bold">
-              ML Researcher & Data Scientist
-            </Text>
-            <Text fontSize="lg" color="gray.600" mt={4}>
-              Building intelligent solutions with Python, ML, and Deep Learning
-            </Text>
-            <HStack mt={8} spacing={6}>
-              <Button 
-                as={Link} 
-                href="https://www.linkedin.com/in/arpan-chaudhary-4a0b9b272/" 
-                isExternal 
-                colorScheme="blue"
-                size="lg"
-                _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
-                transition="all 0.2s"
-              >
-                LinkedIn <ExternalLinkIcon mx="2px" />
-              </Button>
-              <Button 
-                as={Link} 
-                href="https://github.com/ArpanChaudhary" 
-                isExternal
-                colorScheme="purple"
-                size="lg"
-                _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
-                transition="all 0.2s"
-              >
-                GitHub <ExternalLinkIcon mx="2px" />
-              </Button>
-            </HStack>
+            {/* Left: Name and Info */}
+            <Box flex="1">
+              <Heading as="h1" size="3xl" fontWeight="extrabold" style={gradientText}>
+                Arpan Chaudhary
+              </Heading>
+              <Text fontSize="2xl" color="blue.600" mt={4} fontWeight="bold">
+                ML Engineer & Data Scientist
+              </Text>
+              <Text fontSize="lg" color="gray.600" mt={4}>
+                Building intelligent solutions with Python, ML, and Deep Learning
+              </Text>
+              <HStack mt={8} spacing={6} justify={{ base: 'center', md: 'flex-start' }}>
+                <Button 
+                  as={Link} 
+                  href="https://www.linkedin.com/in/arpan-chaudhary-4a0b9b272/" 
+                  isExternal 
+                  colorScheme="blue"
+                  size="lg"
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                  transition="all 0.2s"
+                >
+                  LinkedIn <ExternalLinkIcon mx="2px" />
+                </Button>
+                <Button 
+                  as={Link} 
+                  href="https://github.com/ArpanChaudhary" 
+                  isExternal
+                  colorScheme="purple"
+                  size="lg"
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                  transition="all 0.2s"
+                >
+                  GitHub <ExternalLinkIcon mx="2px" />
+                </Button>
+              </HStack>
+            </Box>
+            {/* Right: Profile Image */}
+            <Box flexShrink={0} mt={{ base: 8, md: 0 }}>
+              <Box
+                as="img"
+                src="/profile.jpg"
+                alt="Arpan Chaudhary profile"
+                borderRadius="full"
+                boxSize={{ base: '180px', md: '240px' }}
+                objectFit="cover"
+                boxShadow="2xl"
+                border="6px solid white"
+                bg="gray.200"
+              />
+            </Box>
           </MotionFlex>
         </Container>
       </MotionBox>
