@@ -181,7 +181,7 @@ const App: React.FC = () => {
             <Box flexShrink={0} mt={{ base: 8, md: 0 }}>
               <Box
                 as="img"
-                src="/profile.jpg"
+                src="./profile.jpg"
                 alt="Arpan Chaudhary profile"
                 borderRadius="full"
                 boxSize={{ base: '180px', md: '240px' }}
@@ -217,7 +217,7 @@ const App: React.FC = () => {
             >
               <Stack spacing={6}>
                 <Text fontSize="lg">
-                  I'm a passionate ML Engineer and Data Scientist with a strong foundation in machine learning, deep learning, and data analysis. My journey in the world of AI began with a deep curiosity about how machines can learn and make intelligent decisions. Today, I specialize in developing cutting-edge machine learning solutions that solve real-world problems and drive business value.
+                  Passionate ML engineer and full-stack developer building intelligent tools that create real-world impact. From ThinkML — my custom ML framework — to deploying Flask/React apps, I turn AI concepts into working solutions. I love sharing knowledge and crafting open-source innovations.
                 </Text>
                 <Text fontSize="lg">
                   With expertise in Python, TensorFlow, and PyTorch, I've built and deployed various ML models across different domains. My approach combines technical excellence with a deep understanding of business needs, ensuring that every solution I develop is both technically sound and practically valuable.
