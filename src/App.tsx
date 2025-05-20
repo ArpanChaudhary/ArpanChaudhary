@@ -217,26 +217,31 @@ const App: React.FC = () => {
             >
               <Stack spacing={6}>
                 <Text fontSize="lg">
-                  I'm a passionate ML Engineer and Data Scientist with expertise in building intelligent solutions.
-                  My focus is on developing machine learning models and data-driven applications that solve real-world problems.
+                  I'm a passionate ML Engineer and Data Scientist with a strong foundation in machine learning, deep learning, and data analysis. My journey in the world of AI began with a deep curiosity about how machines can learn and make intelligent decisions. Today, I specialize in developing cutting-edge machine learning solutions that solve real-world problems and drive business value.
+                </Text>
+                <Text fontSize="lg">
+                  With expertise in Python, TensorFlow, and PyTorch, I've built and deployed various ML models across different domains. My approach combines technical excellence with a deep understanding of business needs, ensuring that every solution I develop is both technically sound and practically valuable.
                 </Text>
                 <Text fontSize="lg" fontWeight="bold">
-                  Key achievements:
+                  Key achievements and expertise:
                 </Text>
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
                   <Box p={4} bg="blue.50" borderRadius="lg" _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }} transition="all 0.2s">
                     <Text fontWeight="bold" color="blue.600">Healthcare ML</Text>
-                    <Text>Developed and deployed ML models achieving 95%+ accuracy in healthcare predictions</Text>
+                    <Text>Developed and deployed ML models achieving 95%+ accuracy in healthcare predictions, helping medical professionals make data-driven decisions for better patient outcomes.</Text>
                   </Box>
                   <Box p={4} bg="purple.50" borderRadius="lg" _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }} transition="all 0.2s">
                     <Text fontWeight="bold" color="purple.600">ThinkML Framework</Text>
-                    <Text>Created ThinkML framework for streamlined machine learning workflows</Text>
+                    <Text>Created ThinkML framework for streamlined machine learning workflows, making ML development more accessible and efficient for teams of all sizes.</Text>
                   </Box>
                   <Box p={4} bg="teal.50" borderRadius="lg" _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }} transition="all 0.2s">
                     <Text fontWeight="bold" color="teal.600">Data Visualization</Text>
-                    <Text>Built data visualization tools for complex ML model analysis</Text>
+                    <Text>Built intuitive data visualization tools for complex ML model analysis, enabling better understanding and interpretation of model behavior and results.</Text>
                   </Box>
                 </SimpleGrid>
+                <Text fontSize="lg" mt={4}>
+                  I'm constantly learning and exploring new technologies in the AI space. When I'm not coding, you can find me contributing to open-source projects, writing technical articles, or mentoring aspiring data scientists. I believe in sharing knowledge and building a stronger AI community together.
+                </Text>
               </Stack>
             </Box>
           </MotionBox>
