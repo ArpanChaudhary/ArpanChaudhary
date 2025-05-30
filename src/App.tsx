@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Heading, Text, Container, Button, Flex, Stack, Link, HStack, Badge, useColorModeValue, SimpleGrid } from '@chakra-ui/react';
 import { RepeatIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
+import profileImage from '/profile.jpg';
 
 interface Project {
   name: string;
@@ -32,8 +33,29 @@ const HERO_BG = (
   </svg>
 );
 
+// Animation variants
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const linkHover = {
+  initial: { y: 0 },
+  hover: { 
+    y: -2,
+    transition: { duration: 0.2 }
+  }
+};
+
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
+const MotionLink = motion(Link);
+const MotionButton = motion(Button);
 
 const App: React.FC = () => {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
@@ -93,21 +115,6 @@ const App: React.FC = () => {
     fetchProjects();
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-    hover: { 
-      y: -5,
-      scale: 1.02,
-      transition: { duration: 0.2 }
-    }
-  };
-
   const gradientText = {
     background: 'linear-gradient(45deg, #6EE7B7, #3B82F6, #8B5CF6)',
     backgroundClip: 'text',
@@ -125,7 +132,7 @@ const App: React.FC = () => {
         pb={24}
         initial="hidden"
         animate="visible"
-        variants={containerVariants}
+        variants={staggerContainer}
         transition={{ duration: 0.5 }}
       >
         {HERO_BG}
@@ -147,7 +154,7 @@ const App: React.FC = () => {
                 Arpan Chaudhary
               </Heading>
               <Text fontSize="2xl" color="blue.600" mt={4} fontWeight="bold">
-                ML Researcher & Data Scientist
+                Freelancer | ML Researcher | Data Scientist | Full Stack Developer
               </Text>
               <Text fontSize="lg" color="gray.600" mt={4}>
                 Building intelligent solutions with Python, ML, and Deep Learning
@@ -181,7 +188,7 @@ const App: React.FC = () => {
             <Box flexShrink={0} mt={{ base: 8, md: 0 }}>
               <Box
                 as="img"
-                src="./profile.jpg"
+                src={profileImage}
                 alt="Arpan Chaudhary profile"
                 borderRadius="full"
                 boxSize={{ base: '180px', md: '240px' }}
@@ -189,6 +196,10 @@ const App: React.FC = () => {
                 boxShadow="2xl"
                 border="6px solid white"
                 bg="gray.200"
+                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                  console.error('Image failed to load:', e);
+                  e.currentTarget.src = 'https://via.placeholder.com/240';
+                }}
               />
             </Box>
           </MotionFlex>
@@ -201,7 +212,7 @@ const App: React.FC = () => {
           <MotionBox
             initial="hidden"
             animate="visible"
-            variants={containerVariants}
+            variants={staggerContainer}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Heading as="h2" size="xl" mb={6} style={gradientText}>About Me</Heading>
@@ -249,22 +260,23 @@ const App: React.FC = () => {
           {/* Projects Section */}
           <MotionBox
             initial="hidden"
-            animate="visible"
-            variants={containerVariants}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <HStack justify="space-between" align="center" mb={6}>
               <Heading as="h2" size="xl" style={gradientText}>Projects</Heading>
               <HStack>
                 <Text fontSize="sm" color="gray.500">Last updated: {lastUpdated}</Text>
-                <Button 
+                <MotionButton 
                   aria-label="Refresh projects" 
                   onClick={fetchProjects}
-                  _hover={{ transform: 'rotate(180deg)' }}
-                  transition="all 0.3s"
+                  whileHover={{ rotate: 180 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <RepeatIcon />
-                </Button>
+                </MotionButton>
               </HStack>
             </HStack>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
@@ -285,8 +297,11 @@ const App: React.FC = () => {
                 return (
                   <MotionBox
                     key={project.name}
-                    variants={cardVariants}
-                    whileHover="hover"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
                     p={6}
                     bg={cardBg}
                     borderRadius="xl"
@@ -304,7 +319,13 @@ const App: React.FC = () => {
                               'ML Project'}
                           </Text>
                         </Stack>
-                        <Link href={project.html_url} isExternal>
+                        <MotionLink 
+                          href={project.html_url} 
+                          isExternal
+                          whileHover="hover"
+                          initial="initial"
+                          variants={linkHover}
+                        >
                           <Button 
                             size="sm" 
                             rightIcon={<ExternalLinkIcon />}
@@ -314,7 +335,7 @@ const App: React.FC = () => {
                           >
                             GitHub
                           </Button>
-                        </Link>
+                        </MotionLink>
                       </HStack>
                       {/* Custom Description */}
                       <Box>
@@ -354,8 +375,9 @@ const App: React.FC = () => {
           {/* Learning Modules Section */}
           <MotionBox
             initial="hidden"
-            animate="visible"
-            variants={containerVariants}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <Heading as="h2" size="xl" mb={6} style={gradientText}>Learning Modules</Heading>
@@ -363,8 +385,11 @@ const App: React.FC = () => {
               {filteredLearningModules.map((module) => (
                 <MotionBox
                   key={module.name}
-                  variants={cardVariants}
-                  whileHover="hover"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
                   p={6}
                   bg={cardBg}
                   borderRadius="xl"
@@ -419,12 +444,16 @@ const App: React.FC = () => {
           {/* Contact Section */}
           <MotionBox
             initial="hidden"
-            animate="visible"
-            variants={containerVariants}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Heading as="h2" size="xl" mb={6} style={gradientText}>Contact</Heading>
-            <Box 
+            <MotionBox 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               p={8} 
               bg={cardBg} 
               borderRadius="xl" 
@@ -437,44 +466,44 @@ const App: React.FC = () => {
               <Stack spacing={6} align="center">
                 <Text fontSize="xl" fontWeight="bold">Let's connect and build something amazing together!</Text>
                 <HStack spacing={6}>
-                  <Button 
+                  <MotionButton 
                     as={Link} 
                     href="mailto:arpanchaudhary74882@gmail.com" 
                     colorScheme="blue"
                     size="lg"
                     leftIcon={<ExternalLinkIcon />}
-                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                    whileHover={{ y: -2, boxShadow: 'lg' }}
                     transition="all 0.2s"
                   >
                     Email
-                  </Button>
-                  <Button 
+                  </MotionButton>
+                  <MotionButton 
                     as={Link} 
                     href="https://github.com/ArpanChaudhary" 
                     isExternal
                     colorScheme="purple"
                     size="lg"
                     leftIcon={<ExternalLinkIcon />}
-                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                    whileHover={{ y: -2, boxShadow: 'lg' }}
                     transition="all 0.2s"
                   >
                     GitHub
-                  </Button>
-                  <Button 
+                  </MotionButton>
+                  <MotionButton 
                     as={Link} 
                     href="https://www.linkedin.com/in/arpan-chaudhary-4a0b9b272/" 
                     isExternal
                     colorScheme="teal"
                     size="lg"
                     leftIcon={<ExternalLinkIcon />}
-                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                    whileHover={{ y: -2, boxShadow: 'lg' }}
                     transition="all 0.2s"
                   >
                     LinkedIn
-                  </Button>
+                  </MotionButton>
                 </HStack>
               </Stack>
-            </Box>
+            </MotionBox>
           </MotionBox>
         </Stack>
       </Container>
