@@ -154,7 +154,7 @@ const App: React.FC = () => {
                 Arpan Chaudhary
               </Heading>
               <Text fontSize="2xl" color="blue.600" mt={4} fontWeight="bold">
-                Freelancer | ML Researcher | Data Scientist | Full Stack Developer
+                Assistant Professor | ML Researcher | Data Scientist | Full Stack Developer
               </Text>
               <Text fontSize="lg" color="gray.600" mt={4}>
                 Building intelligent solutions with Python, ML, and Deep Learning
