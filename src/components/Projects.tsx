@@ -1,9 +1,8 @@
 import React from 'react';
-import { Box, SimpleGrid, Heading, Text, Badge, Link, useColorModeValue, Spinner, Alert, AlertIcon, VStack, HStack, Icon, Button } from '@chakra-ui/react';
+import { Box, SimpleGrid, Heading, Text, Badge, Link, useColorModeValue, Spinner, Alert, AlertIcon, VStack, HStack, Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Project, ErrorState, LoadingState } from '../types';
-import { fadeInUp } from '../animations/variants';
-import { FaGithub, FaExternalLinkAlt, FaStar, FaCodeBranch } from 'react-icons/fa';
+import { FaGithub, FaStar, FaCodeBranch } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
@@ -165,7 +164,8 @@ export const Projects: React.FC<ProjectsProps> = ({ projects, error, loading, ti
                 )}
 
                 {/* Action Buttons */}
-                <HStack spacing={3} pt={2}>
+                {/* Removed GitHub View Code button due to API denial */}
+                {/* <HStack spacing={3} pt={2}>
                   <Button
                     as={Link}
                     href={project.html_url}
@@ -182,25 +182,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects, error, loading, ti
                   >
                     View Code
                   </Button>
-                  {project.homepage && (
-                    <Button
-                      as={Link}
-                      href={project.homepage}
-                      isExternal
-                      size="sm"
-                      colorScheme="purple"
-                      variant="outline"
-                      leftIcon={<FaExternalLinkAlt />}
-                      _hover={{
-                        transform: 'translateY(-2px)',
-                        boxShadow: 'md',
-                      }}
-                      transition="all 0.2s"
-                    >
-                      Live Demo
-                    </Button>
-                  )}
-                </HStack>
+                </HStack> */}
               </VStack>
             </MotionBox>
           ))}
