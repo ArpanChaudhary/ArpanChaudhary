@@ -39,7 +39,8 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ profileImage }) => {
   const [imageError, setImageError] = React.useState(false);
-  const cardBg = useColorModeValue('white', 'gray.800');
+  const bgColor = useColorModeValue('white', 'gray.800');
+  const borderColor = useColorModeValue('gray.200', 'gray.700');
 
   const gradientText = {
     background: 'linear-gradient(45deg, #6EE7B7, #3B82F6, #8B5CF6)',
@@ -54,6 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ profileImage }) => {
       position="relative"
       overflow="hidden"
       pb={24}
+      id="hero"
       initial="hidden"
       animate="visible"
       variants={fadeInUp}
@@ -130,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ profileImage }) => {
             </HStack>
           </Box>
           <Box flexShrink={0} mt={{ base: 8, md: 0 }}>
-            <Box
+            <MotionBox
               as="img"
               src={imageError ? '/fallback-profile.jpg' : profileImage}
               alt="Arpan Chaudhary profile"
@@ -138,10 +140,13 @@ export const Hero: React.FC<HeroProps> = ({ profileImage }) => {
               boxSize={{ base: '180px', md: '240px' }}
               objectFit="cover"
               boxShadow="2xl"
-              border="6px solid white"
+              border="6px solid"
+              borderColor={bgColor}
               bg="gray.200"
               onError={() => setImageError(true)}
               aria-label="Profile Picture"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
             />
           </Box>
         </MotionFlex>

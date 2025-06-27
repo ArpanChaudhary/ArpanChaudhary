@@ -12,13 +12,15 @@ export interface Project {
 }
 
 export interface AnimationVariants {
-  hidden: {
-    opacity: number;
+  hidden?: {
+    opacity?: number;
     y?: number;
+    scale?: number;
   };
-  visible: {
-    opacity: number;
+  visible?: {
+    opacity?: number;
     y?: number;
+    scale?: number;
     transition?: {
       duration?: number;
       delay?: number;
@@ -26,7 +28,9 @@ export interface AnimationVariants {
     };
   };
   hover?: {
+    opacity?: number;
     y?: number;
+    scale?: number;
     transition?: {
       duration: number;
     };

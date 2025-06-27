@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Container, useToast } from '@chakra-ui/react';
+import { Box, Container, useToast, useColorModeValue } from '@chakra-ui/react';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
+import { About } from './components/About';
+import { Skills } from './components/Skills';
+import { Contact } from './components/Contact';
+import { Navbar } from './components/Navbar';
 import { Project, ErrorState, LoadingState } from './types';
 import profileImage from '/profile.jpg';
 
+// Custom project for rangrezdecor.in
+const rangrezDecorProject: Project = {
+  name: 'Rangrez Decor',
+  description: 'A modern e-commerce website for home decoration and interior design products. Features a responsive design, product catalog, shopping cart functionality, and secure payment integration.',
+  html_url: 'https://rangrezdecor.in',
+  language: 'React/TypeScript',
+  topics: ['React', 'TypeScript', 'E-commerce', 'Responsive Design', 'Payment Integration', 'UI/UX'],
+  stargazers_count: 0,
+  forks_count: 0,
+  readme_content: 'A comprehensive e-commerce platform built with modern web technologies, offering a seamless shopping experience for home decoration products.'
+};
+
 const App: React.FC = () => {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-  const [filteredLearningModules, setFilteredLearningModules] = useState<Project[]>([]);
   const [error, setError] = useState<ErrorState>({ hasError: false, message: '' });
   const [loading, setLoading] = useState<LoadingState>({ isLoading: true });
   const toast = useToast();
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   const fetchProjects = async () => {
     try {
@@ -24,20 +40,9 @@ const App: React.FC = () => {
         'ThinkMLApp_v1',
         'CARDIOPREDICT'
       ];
-
-      const learningModules = [
-        'Numpy',
-        'Pandas',
-        'Python',
-        'Visualization'
-      ];
       
       const filteredProjs = response.data.filter((project: Project) => 
         selectedProjects.includes(project.name)
-      );
-
-      const filteredModules = response.data.filter((project: Project) => 
-        learningModules.includes(project.name)
       );
 
       // Fetch README content for projects in parallel
@@ -55,8 +60,9 @@ const App: React.FC = () => {
         })
       );
 
-      setFilteredProjects(projectsWithDetails);
-      setFilteredLearningModules(filteredModules);
+      // Combine GitHub projects with custom projects
+      const allProjects = [rangrezDecorProject, ...projectsWithDetails];
+      setFilteredProjects(allProjects);
       setError({ hasError: false, message: '' });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'An error occurred while fetching projects';
@@ -78,21 +84,19 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Box bg="gray.50" minH="100vh">
+    <Box bg={bgColor} minH="100vh">
+      <Navbar />
       <Hero profileImage={profileImage} />
       <Container maxW="container.xl" py={10}>
+        <About />
+        <Skills />
         <Projects
           projects={filteredProjects}
           error={error}
           loading={loading}
           title="Featured Projects"
         />
-        <Projects
-          projects={filteredLearningModules}
-          error={error}
-          loading={loading}
-          title="Learning Modules"
-        />
+        <Contact />
       </Container>
     </Box>
   );

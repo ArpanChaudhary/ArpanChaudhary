@@ -1,41 +1,51 @@
-import { AnimationVariants } from '../types';
+import { Variants } from 'framer-motion';
 
-export const staggerContainer: AnimationVariants = {
-  hidden: { opacity: 0 },
+export const staggerContainer: Variants = {
+  hidden: {
+    opacity: 0,
+  },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-export const linkHover: AnimationVariants = {
-  hidden: { y: 0 },
+export const linkHover: Variants = {
+  hidden: { opacity: 1, y: 0 },
   hover: { 
+    opacity: 1,
     y: -2,
     transition: { duration: 0.2 }
   }
 };
 
-export const fadeInUp: AnimationVariants = {
-  hidden: { opacity: 0, y: 20 },
+export const fadeInUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5
-    }
-  }
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-export const scaleIn: AnimationVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
+export const scaleIn: Variants = {
+  hidden: {
+    scale: 0.8,
+    opacity: 0,
+  },
   visible: {
-    opacity: 1,
     scale: 1,
+    opacity: 1,
     transition: {
-      duration: 0.3
-    }
-  }
+      duration: 0.5,
+    },
+  },
 }; 
