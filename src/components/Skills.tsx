@@ -1,11 +1,9 @@
 import React from 'react';
-import { Box, Container, Heading, Text, SimpleGrid, useColorModeValue, VStack } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, SimpleGrid, useColorModeValue, VStack, HStack, Badge } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import {
   SiPython,
-  SiJavascript,
   SiReact,
-  SiTypescript,
   SiTensorflow,
   SiPytorch,
   SiDocker,
@@ -37,43 +35,65 @@ interface SkillProps {
 const Skill: React.FC<SkillProps> = ({ name, icon: Icon, level, color, category }) => {
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const circumference = 2 * Math.PI * 40;
+  const circumference = 2 * Math.PI * 45;
   const strokeDashoffset = circumference - (level / 100) * circumference;
 
   return (
     <MotionBox
       bg={bgColor}
-      p={6}
-      borderRadius="lg"
-      boxShadow="md"
+      p={8}
+      borderRadius="2xl"
+      boxShadow="lg"
       border="1px solid"
       borderColor={borderColor}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      whileHover={{ 
+        y: -8, 
+        boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+        transition: { duration: 0.3 }
+      }}
       textAlign="center"
+      position="relative"
+      overflow="hidden"
+      _before={{
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '3px',
+        background: `linear-gradient(90deg, ${color}, ${color}88)`,
+        transform: 'scaleX(0)',
+        transition: 'transform 0.3s ease',
+      }}
+      _hover={{
+        _before: {
+          transform: 'scaleX(1)',
+        },
+      }}
     >
-      <Box position="relative" width="100px" height="100px" mx="auto" mb={4}>
-        <svg width="100" height="100" viewBox="0 0 100 100">
+      <Box position="relative" width="120px" height="120px" mx="auto" mb={6}>
+        <svg width="120" height="120" viewBox="0 0 120 120">
           <circle
-            cx="50"
-            cy="50"
-            r="40"
+            cx="60"
+            cy="60"
+            r="45"
             fill="none"
             stroke={useColorModeValue('gray.200', 'gray.700')}
             strokeWidth="8"
           />
           <circle
-            cx="50"
-            cy="50"
-            r="40"
+            cx="60"
+            cy="60"
+            r="45"
             fill="none"
             stroke={color}
             strokeWidth="8"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
-            transform="rotate(-90 50 50)"
+            transform="rotate(-90 60 60)"
             style={{
-              transition: 'stroke-dashoffset 0.5s ease-in-out',
+              transition: 'stroke-dashoffset 1s ease-in-out',
             }}
           />
           <Box
@@ -82,17 +102,26 @@ const Skill: React.FC<SkillProps> = ({ name, icon: Icon, level, color, category 
             left="50%"
             transform="translate(-50%, -50%)"
           >
-            <Icon size={24} color={color} />
+            <Icon size={32} color={color} />
           </Box>
         </svg>
       </Box>
-      <Text fontWeight="bold" mb={1}>
+      <Text fontWeight="bold" mb={2} fontSize="lg" color="gray.800">
         {name}
       </Text>
-      <Text color="gray.500" fontSize="sm" mb={2}>
+      <Badge
+        colorScheme="blue"
+        variant="subtle"
+        px={3}
+        py={1}
+        borderRadius="full"
+        fontSize="sm"
+        fontWeight="medium"
+        mb={2}
+      >
         {level}%
-      </Text>
-      <Text fontSize="xs" color="gray.400">
+      </Badge>
+      <Text fontSize="xs" color="gray.500" fontWeight="medium">
         {category}
       </Text>
     </MotionBox>
@@ -136,34 +165,48 @@ export const Skills: React.FC = () => {
   const categories = Array.from(new Set(skills.map(skill => skill.category)));
 
   return (
-    <Box as="section" py={20} id="skills" bg={useColorModeValue('white', 'gray.800')}>
+    <Box as="section" py={20} id="skills" bg={useColorModeValue('gray.50', 'gray.900')}>
       <Container maxW="container.xl">
-        <VStack spacing={12}>
+        <VStack spacing={16}>
           <Heading
             as="h2"
-            size="xl"
+            size="2xl"
             textAlign="center"
-            bgGradient="linear(to-r, blue.400, purple.500)"
+            bgGradient="linear(to-r, blue.400, purple.500, pink.400)"
             bgClip="text"
+            fontWeight="extrabold"
           >
             Technical Expertise
           </Heading>
           
           {categories.map((category, categoryIndex) => (
-            <VStack key={category} spacing={8} width="full" align="stretch">
-              <Heading size="md" color={useColorModeValue('gray.700', 'gray.300')}>
-                {category}
-              </Heading>
-              <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={8}>
+            <VStack key={category} spacing={12} width="full" align="stretch">
+              <Box textAlign="center">
+                <Heading 
+                  size="lg" 
+                  color={useColorModeValue('gray.700', 'gray.300')}
+                  mb={2}
+                >
+                  {category}
+                </Heading>
+                <Box 
+                  w="60px" 
+                  h="3px" 
+                  bg="linear-gradient(90deg, #667eea, #764ba2, #f093fb)"
+                  mx="auto"
+                  borderRadius="full"
+                />
+              </Box>
+              <SimpleGrid columns={{ base: 2, md: 3, lg: 4, xl: 5 }} spacing={8}>
                 {skills
                   .filter(skill => skill.category === category)
                   .map((skill, index) => (
                     <MotionBox
                       key={index}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.1, duration: 0.6 }}
                     >
                       <Skill
                         name={skill.name}
