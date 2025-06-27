@@ -9,7 +9,6 @@ import {
   useDisclosure,
   Stack,
   Link as ChakraLink,
-  Text,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link as ScrollLink } from 'react-scroll';
@@ -28,13 +27,11 @@ const Links = [
 export const Navbar: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const textColor = useColorModeValue('gray.700', 'gray.200');
 
   return (
     <MotionBox
-      bg={bgColor}
       px={6}
       position="fixed"
       w="100%"
@@ -91,7 +88,6 @@ export const Navbar: React.FC = () => {
                     transform: 'translateY(-2px)',
                   }}
                   cursor="pointer"
-                  transition="all 0.2s"
                   whileHover={{ y: -2 }}
                 >
                   {link.name}
@@ -108,7 +104,6 @@ export const Navbar: React.FC = () => {
             mr={4}
             variant="ghost"
             _hover={{ bg: useColorModeValue('gray.100', 'gray.700') }}
-            transition="all 0.2s"
           />
         </Flex>
       </Flex>
@@ -143,7 +138,6 @@ export const Navbar: React.FC = () => {
                     color: 'blue.500',
                   }}
                   cursor="pointer"
-                  transition="all 0.2s"
                 >
                   {link.name}
                 </ChakraLink>

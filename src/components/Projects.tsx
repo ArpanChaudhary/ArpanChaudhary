@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, SimpleGrid, Heading, Text, Badge, Link, useColorModeValue, Spinner, Alert, AlertIcon, VStack, HStack, Button } from '@chakra-ui/react';
+import { Box, SimpleGrid, Heading, Text, Badge, Link, useColorModeValue, Spinner, Alert, AlertIcon, VStack, HStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Project, ErrorState, LoadingState } from '../types';
-import { FaGithub, FaStar, FaCodeBranch } from 'react-icons/fa';
+import { FaStar, FaCodeBranch } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
@@ -162,27 +162,6 @@ export const Projects: React.FC<ProjectsProps> = ({ projects, error, loading, ti
                     </Text>
                   </Box>
                 )}
-
-                {/* Action Buttons */}
-                {/* Removed GitHub View Code button due to API denial */}
-                {/* <HStack spacing={3} pt={2}>
-                  <Button
-                    as={Link}
-                    href={project.html_url}
-                    isExternal
-                    size="sm"
-                    colorScheme="blue"
-                    variant="outline"
-                    leftIcon={<FaGithub />}
-                    _hover={{
-                      transform: 'translateY(-2px)',
-                      boxShadow: 'md',
-                    }}
-                    transition="all 0.2s"
-                  >
-                    View Code
-                  </Button>
-                </HStack> */}
               </VStack>
             </MotionBox>
           ))}

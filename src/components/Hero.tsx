@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Text, Container, Button, Flex, HStack, Link, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, Text, Container, Button, Flex, HStack, Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../animations/variants';
@@ -52,7 +52,6 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ profileImage }) => {
   const [imageError, setImageError] = React.useState(false);
-  const bgColor = useColorModeValue('white', 'gray.800');
 
   const gradientText = {
     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
@@ -60,15 +59,6 @@ export const Hero: React.FC<HeroProps> = ({ profileImage }) => {
     WebkitBackgroundClip: 'text',
     color: 'transparent',
     filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))',
-  };
-
-  const floatingAnimation = {
-    y: [0, -10, 0],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
   };
 
   return (

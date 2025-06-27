@@ -116,7 +116,7 @@ export const About: React.FC = () => {
               My Journey
             </Heading>
             <Text fontSize="lg" color="gray.600" maxW="2xl" mx="auto">
-              From academia to industry, I've been passionate about technology and innovation.
+              From industry to academia, I've been passionate about technology and innovation.
             </Text>
           </Box>
           
