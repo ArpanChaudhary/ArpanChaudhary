@@ -26,7 +26,7 @@ import {
   SiKaggle,
   SiSqlite,
 } from 'react-icons/si';
-import { FaGoogleDrive } from 'react-icons/fa';
+import { FaGoogleDrive, FaChartLine, FaProjectDiagram } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
@@ -156,6 +156,8 @@ export const Skills: React.FC = () => {
     
     // Machine Learning & Deep Learning
     { name: 'Scikit-learn', icon: SiScikitlearn, level: 90, color: '#F7931E', category: 'Machine Learning' },
+    { name: 'Regression Algorithms', icon: FaChartLine, level: 90, color: '#3182CE', category: 'Machine Learning' },
+    { name: 'Classification Algorithms', icon: FaProjectDiagram, level: 90, color: '#805AD5', category: 'Machine Learning' },
     { name: 'XGBoost', icon: SiPython, level: 80, color: '#EA7E20', category: 'Machine Learning' },
     { name: 'LightGBM', icon: SiPython, level: 78, color: '#00C800', category: 'Machine Learning' },
     { name: 'CatBoost', icon: SiPython, level: 75, color: '#FF6F00', category: 'Machine Learning' },
