@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Heading, Text, SimpleGrid, useColorModeValue, VStack, HStack, Badge } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, SimpleGrid, useColorModeValue, VStack, Badge } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import {
   SiPython,
@@ -20,7 +20,13 @@ import {
   SiFlask,
   SiAwsamplify,
   SiGooglecloud,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiKaggle,
+  SiSqlite,
 } from 'react-icons/si';
+import { FaGoogleDrive } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
@@ -136,18 +142,30 @@ export const Skills: React.FC = () => {
     { name: 'Flask', icon: SiFlask, level: 85, color: '#000000', category: 'Web Framework' },
     { name: 'FastAPI', icon: SiFastapi, level: 90, color: '#009688', category: 'Web Framework' },
     { name: 'React', icon: SiReact, level: 85, color: '#61DAFB', category: 'Frontend' },
+    { name: 'HTML5', icon: SiHtml5, level: 90, color: '#E34F26', category: 'Frontend' },
+    { name: 'CSS3', icon: SiCss3, level: 88, color: '#1572B6', category: 'Frontend' },
+    { name: 'JavaScript', icon: SiJavascript, level: 87, color: '#F7DF1E', category: 'Frontend' },
     
     // Data Science & Analytics
     { name: 'Pandas', icon: SiPandas, level: 95, color: '#150458', category: 'Data Science' },
     { name: 'NumPy', icon: SiNumpy, level: 90, color: '#013243', category: 'Data Science' },
-    { name: 'Scikit-learn', icon: SiScikitlearn, level: 90, color: '#F7931E', category: 'Machine Learning' },
     { name: 'Jupyter', icon: SiJupyter, level: 95, color: '#F37626', category: 'Data Science' },
+    { name: 'Google Colab', icon: FaGoogleDrive, level: 90, color: '#F9AB00', category: 'Data Science' },
+    { name: 'Kaggle', icon: SiKaggle, level: 85, color: '#20BEFF', category: 'Data Science' },
     { name: 'Apache Spark', icon: SiApachespark, level: 85, color: '#E25A1C', category: 'Big Data' },
     
     // Machine Learning & Deep Learning
+    { name: 'Scikit-learn', icon: SiScikitlearn, level: 90, color: '#F7931E', category: 'Machine Learning' },
+    { name: 'XGBoost', icon: SiPython, level: 80, color: '#EA7E20', category: 'Machine Learning' },
+    { name: 'LightGBM', icon: SiPython, level: 78, color: '#00C800', category: 'Machine Learning' },
+    { name: 'CatBoost', icon: SiPython, level: 75, color: '#FF6F00', category: 'Machine Learning' },
     { name: 'TensorFlow', icon: SiTensorflow, level: 90, color: '#FF6F00', category: 'Deep Learning' },
     { name: 'PyTorch', icon: SiPytorch, level: 85, color: '#EE4C2C', category: 'Deep Learning' },
+    { name: 'Keras', icon: SiPython, level: 80, color: '#D00000', category: 'Deep Learning' },
+    { name: 'ONNX', icon: SiPython, level: 70, color: '#005CED', category: 'Deep Learning' },
     { name: 'ML Products', icon: SiTensorflow, level: 90, color: '#FF6F00', category: 'ML Development' },
+    { name: 'MLflow', icon: SiPython, level: 80, color: '#0194E2', category: 'ML Development' },
+    { name: 'DVC', icon: SiPython, level: 75, color: '#945DD6', category: 'ML Development' },
     
     // Cloud & DevOps
     { name: 'AWS', icon: SiAwsamplify, level: 85, color: '#FF9900', category: 'Cloud' },
@@ -157,6 +175,7 @@ export const Skills: React.FC = () => {
     // Databases
     { name: 'MongoDB', icon: SiMongodb, level: 85, color: '#47A248', category: 'Database' },
     { name: 'PostgreSQL', icon: SiPostgresql, level: 80, color: '#336791', category: 'Database' },
+    { name: 'SQLite3', icon: SiSqlite, level: 75, color: '#003B57', category: 'Database' },
     
     // Version Control
     { name: 'Git', icon: SiGit, level: 90, color: '#F05032', category: 'Version Control' },
@@ -179,7 +198,7 @@ export const Skills: React.FC = () => {
             Technical Expertise
           </Heading>
           
-          {categories.map((category, categoryIndex) => (
+          {categories.map((category) => (
             <VStack key={category} spacing={12} width="full" align="stretch">
               <Box textAlign="center">
                 <Heading 
