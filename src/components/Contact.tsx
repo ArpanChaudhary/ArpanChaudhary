@@ -5,14 +5,13 @@ import {
   Heading,
   Text,
   SimpleGrid,
-  Icon,
   Link,
   useColorModeValue,
   VStack,
   HStack,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
@@ -60,13 +59,8 @@ export const Contact: React.FC = () => {
       label: 'LinkedIn',
     },
     {
-      icon: FaTwitter,
-      href: 'https://twitter.com/yourusername',
-      label: 'Twitter',
-    },
-    {
       icon: FaEnvelope,
-      href: 'mailto:your.email@example.com',
+      href: 'mailto:arpanchaudhary74882@gmail.com',
       label: 'Email',
     },
   ];
