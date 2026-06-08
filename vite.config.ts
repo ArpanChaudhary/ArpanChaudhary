@@ -8,6 +8,7 @@ const __dirname = dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/ArpanChaudhary/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -22,4 +23,4 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
-}); 
+});
